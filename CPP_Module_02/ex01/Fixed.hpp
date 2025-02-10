@@ -2,6 +2,7 @@
 #define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 
 #define RESET       "\033[0m"
 #define RED         "\033[31m"
@@ -15,20 +16,30 @@
 #define UNDERLINE   "\033[4m"
 
 class Fixed {
-    private:
-        int                 _value;
-        static const int    _fractionalBits = 8;
+	private:
+		int                 _value;
+		static const int    _fractionalBits = 8;
 
     public:
         Fixed();
+        Fixed(int const value);
+        Fixed(float const value);
         Fixed(const Fixed &src);
         ~Fixed();
 
         Fixed &operator=(const Fixed &src);
 
-        int getRawBits(void) const;
-        void setRawBits(int const raw);
+		void print(std::ostream &out) const;
 
+        int getRawValue(void) const;
+
+        int getRawBits(void) const;
+
+        void setRawBits(int const raw);
+        float toFloat(void) const;
+        int toInt(void) const;
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &src);
 
 #endif //FIXED_HPP

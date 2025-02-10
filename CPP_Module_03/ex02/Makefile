@@ -1,10 +1,10 @@
-NAME	= canonic
+NAME	= fragtrap
 BUILDER	= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 RM		= rm -f
 
-SRCS	= main.cpp Fixed.cpp
+SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJ		= $(SRC:.cpp=.o)
 
 all:
