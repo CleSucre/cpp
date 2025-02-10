@@ -13,6 +13,10 @@ int	main(int argc, char **argv) {
 	}
 	horde = zombieHorde(N, "Zombie");
 
+    if (horde == NULL) {
+		return 1;
+	}
+
 	for (int i = 0; i < N; i++) {
         horde[i].announce();
     }

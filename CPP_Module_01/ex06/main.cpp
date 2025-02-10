@@ -7,10 +7,10 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	if (strcmp(argv[1], "DEBUG") != 0 && strcmp(argv[1], "INFO") != 0 && strcmp(argv[1], "WARNING") != 0 && strcmp(argv[1], "ERROR") != 0) {
-        std::cerr << "Invalid log level: " << argv[1] << std::endl;
-        return 1;
-    }
+    if (strcmp(argv[1], "DEBUG") != 0 && strcmp(argv[1], "INFO") != 0 && strcmp(argv[1], "WARNING") != 0 && strcmp(argv[1], "ERROR") != 0) {
+    	std::cout << MAGENTA << "[ UNKNOWN ] " << RESET << "Invalid complaint level: " << argv[1] << std::endl;
+		return 1;
+	}
 
 	Harl harl(argv[1]);
 

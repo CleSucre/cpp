@@ -1,6 +1,6 @@
 NAME	= phonebook
 
-BUILDER	= g++
+BUILDER	= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 RM		= rm -f

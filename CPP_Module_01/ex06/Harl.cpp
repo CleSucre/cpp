@@ -1,20 +1,8 @@
 #include "Harl.hpp"
 
-Harl::Harl() {}
+Harl::Harl() : _minLevel(0) {}  // ✅ Initialise `_minLevel` à 0 par défaut
 
 Harl::Harl(std::string maxLevel) {
-	this->_levels[0].level = "DEBUG";
-	this->_levels[0].func = &Harl::debug;
-
-	this->_levels[1].level = "INFO";
-	this->_levels[1].func = &Harl::info;
-
-	this->_levels[2].level = "WARNING";
-	this->_levels[2].func = &Harl::warning;
-
-	this->_levels[3].level = "ERROR";
-	this->_levels[3].func = &Harl::error;
-
 	this->_minLevel = this->_getLevelIndex(maxLevel);
 }
 
@@ -40,22 +28,41 @@ void Harl::unknown(std::string level) {
 	std::cout << MAGENTA << "[ UNKNOWN ] " << RESET << "Invalid complaint level: " << level << std::endl;
 }
 
-int Harl::_getLevelIndex(std::string level) {
-    for (int i = 0; i < 4; i++) {
-        if (this->_levels[i].level == level) {
-            return i;
-        }
-    }
-    return -1;
+int Harl::_getLevelIndex(const std::string &level) {
+	if (level == "DEBUG")   return 0;
+	if (level == "INFO")    return 1;
+	if (level == "WARNING") return 2;
+	if (level == "ERROR")   return 3;
+	return -1;
 }
 
 void Harl::complain(std::string level) {
-	int minLevel = this->_getLevelIndex(level);
 
-	if (minLevel == -1) {
+	if (this->_minLevel == -1) {
 		this->unknown(level);
+		return;
 	}
-	if (minLevel >= this->_minLevel) {
-		(this->*_levels[minLevel].func)();
+
+	int index = this->_getLevelIndex(level);
+
+	if (index < this->_minLevel) {
+		return;
+	}
+
+	switch (index) {
+		case 0:
+			this->debug();
+		break;
+		case 1:
+			this->info();
+		break;
+		case 2:
+			this->warning();
+		break;
+		case 3:
+			this->error();
+		break;
+		default:
+			this->unknown(level);
 	}
 }

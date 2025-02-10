@@ -2,7 +2,6 @@
 #define HARL_HPP
 
 #include <iostream>
-#include <map>
 
 #define RESET		"\033[0m"
 #define RED			"\033[31m"
@@ -17,14 +16,7 @@
 
 class Harl {
 	private:
-		struct Level {
-			std::string	level;
-			void (Harl::*func)();
-		};
-
 		int		_minLevel;
-
-		Level	_levels[4];
 
 		void	debug();
 		void	info();
@@ -32,7 +24,7 @@ class Harl {
 		void	error();
 		void	unknown(std::string level);
 
-		int		_getLevelIndex(std::string level);
+		int		_getLevelIndex(const std::string &level);
 
 	public:
 		Harl();
