@@ -1,4 +1,4 @@
-NAME	= violence
+NAME	= interface
 
 BUILDER	= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -8,7 +8,7 @@ RMDIR	= rm -rf
 
 OBJ_DIR	= objs
 
-SRCS	= main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRCS	= main.cpp
 
 OBJ		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 

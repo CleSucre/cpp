@@ -1,4 +1,4 @@
-NAME	= violence
+NAME	= fire
 
 BUILDER	= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -8,7 +8,7 @@ RMDIR	= rm -rf
 
 OBJ_DIR	= objs
 
-SRCS	= main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRCS	= main.cpp Animal.cpp WrongAnimal.cpp Dog.cpp Cat.cpp WrongCat.cpp Brain.cpp
 
 OBJ		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 

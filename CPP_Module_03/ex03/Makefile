@@ -1,24 +1,34 @@
 NAME	= diamondtrap
+
 BUILDER	= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 RM		= rm -f
+RMDIR	= rm -rf
+
+OBJ_DIR	= objs
 
 SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-OBJ		= $(SRC:.cpp=.o)
 
-all:
-	${BUILDER} ${SRCS} ${FLAGS} -o ${NAME}
+OBJ		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJ)
-	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	$(BUILDER) $(FLAGS) $(OBJ) -o $(NAME)
+
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+	$(BUILDER) $(FLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+all: $(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	$(RMDIR) $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re

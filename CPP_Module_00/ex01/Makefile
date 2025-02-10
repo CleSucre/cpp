@@ -1,23 +1,30 @@
-NAME = phonebook
+NAME	= phonebook
 
-BUILDER = g++
-FLAGS = -g -Wall -Wextra -Werror -std=c++98 -pedantic
+BUILDER	= g++
+FLAGS	= -Wall -Wextra -Werror -std=c++98
 
-RM = rm -f
+RM		= rm -f
+RMDIR	= rm -rf
 
-SRCS = main.cpp Terminal.cpp PhoneBook.cpp Contact.cpp
-OBJ = $(SRCS:.cpp=.o)
+OBJ_DIR	= objs
 
-all: $(NAME)
+SRCS	= main.cpp Terminal.cpp PhoneBook.cpp Contact.cpp
+
+OBJ		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJ)
 	$(BUILDER) $(FLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 	$(BUILDER) $(FLAGS) -c $< -o $@
 
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+all: $(NAME)
+
 clean:
-	$(RM) $(OBJ)
+	$(RMDIR) $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)

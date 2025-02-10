@@ -10,14 +10,14 @@ class Animal {
 
 	public:
 		Animal();
+		Animal(const Animal &other);
 		explicit Animal(const std::string &type);
 		virtual ~Animal();
 
-		Animal &operator=(const Animal &animal);
+		Animal &operator=(const Animal &other);
 
-		std::string getType() const;
-
-		virtual void makeSound() const;
+		virtual std::string getType() const;
+		virtual void makeSound() const = 0;
 };
 
 #endif //ANIMAL_HPP

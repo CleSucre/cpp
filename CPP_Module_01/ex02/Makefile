@@ -1,22 +1,30 @@
 NAME	= brain
+
 BUILDER	= g++
 FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 RM		= rm -f
+RMDIR	= rm -rf
+
+OBJ_DIR	= objs
 
 SRCS	= main.cpp
-OBJ		= $(SRCS:.cpp=.o)
 
-all: $(NAME)
+OBJ		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJ)
 	$(BUILDER) $(FLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 	$(BUILDER) $(FLAGS) -c $< -o $@
 
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+all: $(NAME)
+
 clean:
-	$(RM) $(OBJ)
+	$(RMDIR) $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
