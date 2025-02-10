@@ -1,5 +1,10 @@
 #include "FragTrap.hpp"
 
+FragTrap::FragTrap()
+	: ClapTrap("FragTrap", 100, 100, 30) {
+	std::cout << GREEN << "FragTrap constructed!" << RESET << std::endl;
+}
+
 FragTrap::FragTrap(const std::string &name)
 	: ClapTrap(name, 100, 100, 30) {
 	std::cout << GREEN << "FragTrap " << this->_name << " constructed!" << RESET << std::endl;

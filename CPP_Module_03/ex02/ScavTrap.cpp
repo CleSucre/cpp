@@ -1,5 +1,10 @@
 #include "ScavTrap.hpp"
 
+ScavTrap::ScavTrap()
+    : ClapTrap("ScavTrap", 100, 50, 20), _isGuardGateMode(false) {
+    std::cout << GREEN << "ScavTrap constructed!" << RESET << std::endl;
+}
+
 ScavTrap::ScavTrap(const std::string &name)
     : ClapTrap(name, 100, 50, 20), _isGuardGateMode(false) {
     std::cout << GREEN << "ScavTrap " << this->_name << " constructed!" << RESET << std::endl;

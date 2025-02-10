@@ -8,6 +8,7 @@ class ScavTrap : public ClapTrap {
 		bool	_isGuardGateMode;
 
 	public:
+        ScavTrap();
         explicit ScavTrap(const std::string &name);
         ~ScavTrap();
 
