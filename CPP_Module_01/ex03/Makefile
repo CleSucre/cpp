@@ -1,22 +1,22 @@
-NAME	= violence
+NAME		= violence
 
-BUILDER	= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98
+CXX			= c++
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
-RM		= rm -f
-RMDIR	= rm -rf
+RM			= rm -f
+RMDIR		= rm -rf
 
-OBJ_DIR	= objs
+OBJ_DIR		= objs
 
-SRCS	= main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRCS		= main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
-OBJ		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
+OBJ			= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJ)
-	$(BUILDER) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
-	$(BUILDER) $(FLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

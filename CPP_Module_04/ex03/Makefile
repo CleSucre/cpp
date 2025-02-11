@@ -1,7 +1,7 @@
 NAME	= interface
 
-BUILDER	= g++
-FLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes
+CXX	= g++
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes
 
 RM		= rm -f
 RMDIR	= rm -rf
@@ -17,10 +17,10 @@ SRCS	:= $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJ		= $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJ)
-	$(BUILDER) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(BUILDER) $(FLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

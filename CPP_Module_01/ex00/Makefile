@@ -1,22 +1,22 @@
-NAME	= brainz
+NAME		= brainz
 
-BUILDER	= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98
+CXX			= c++
+CXXCXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
-RM		= rm -f
-RMDIR	= rm -rf
+RM			= rm -f
+RMDIR		= rm -rf
 
-OBJ_DIR	= objs
+OBJ_DIR		= objs
 
-SRCS	= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS		= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
-OBJ		= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
+OBJ			= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJ)
-	$(BUILDER) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXCXXFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
-	$(BUILDER) $(FLAGS) -c $< -o $@
+	$(CXX) $(CXXCXXFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
