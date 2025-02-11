@@ -1,7 +1,7 @@
 NAME		= brainz
 
 CXX			= c++
-CXXCXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 RM			= rm -f
 RMDIR		= rm -rf
@@ -13,10 +13,10 @@ SRCS		= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJ			= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJ)
-	$(CXX) $(CXXCXXFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
-	$(CXX) $(CXXCXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
