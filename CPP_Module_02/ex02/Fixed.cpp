@@ -109,10 +109,6 @@ Fixed Fixed::max(Fixed const &a, Fixed const &b) {
     return a > b ? a : b;
 }
 
-void Fixed::print() {
-    std::cout << this->toFloat() << std::endl;
-}
-
 int Fixed::getRawBits() const {
     std::cout << GREEN << "getRawBits member function called" << RESET << std::endl;
     return this->_value;

@@ -31,11 +31,6 @@ Fixed &Fixed::operator=(const Fixed &src) {
     return *this;
 }
 
-void Fixed::print(std::ostream &out) const {
-    out << this->toFloat();
-}
-
-
 int Fixed::getRawBits(void) const {
     std::cout << GREEN << "getRawBits member function called" << RESET << std::endl;
     return this->_value;

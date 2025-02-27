@@ -51,8 +51,6 @@ class Fixed {
 		Fixed static max(Fixed &a, Fixed &b);
 		Fixed static max(Fixed const &a, Fixed const &b);
 
-		void print();
-
         int getRawBits() const;
         void setRawBits(int const raw);
 

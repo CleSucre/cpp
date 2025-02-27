@@ -29,8 +29,6 @@ class Fixed {
 
         Fixed &operator=(const Fixed &src);
 
-		void print(std::ostream &out) const;
-
         int getRawValue(void) const;
 
         int getRawBits(void) const;
