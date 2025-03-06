@@ -1,7 +1,7 @@
 NAME	= interface
 
 CXX	= g++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes -g
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes
 
 RM		= rm -f
 RMDIR	= rm -rf
