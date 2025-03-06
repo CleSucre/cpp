@@ -1,19 +1,13 @@
-#include "../includes/Ice.hpp"
+#include "Ice.hpp"
+#include <colors.h>
 
-Ice::Ice() : AMateria("ice") {}
-
-Ice::Ice(Ice const &other) : AMateria(other) {}
-
-Ice::~Ice() {}
-
-Ice &Ice::operator=(Ice const &other) {
-	return *this;
+Ice::Ice() : AMateria("ice") {
 }
 
-AMateria* Ice::clone() const {
-	return new Ice(*this);
+AMateria *Ice::clone() const {
+	return new Ice();
 }
 
-void Ice::use(ICharacter& target) {
-	std::cout << BLUE << "* shoots an ice bolt at " << target.getName() << " *" << RESET << std::endl;
+void Ice::use(ICharacter &target) {
+	std::cout << GREEN << "* shoots an ice bolt at " << MAGENTA << target.getName() << GREEN << " *" << RESET << std::endl;
 }

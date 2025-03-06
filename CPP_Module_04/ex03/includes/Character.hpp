@@ -2,21 +2,24 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
+#include <iostream>
 
-const int INVENTORY_SIZE = 4;
+#define INVENTORY_SIZE 4
 
-class Character {
+class Character : public ICharacter {
 	private:
 		std::string _name;
 		AMateria* _inventory[INVENTORY_SIZE];
 
-        bool isSlotEmpty(const int idx) const;
+		void initInventory();
+		bool isSlotEmpty(const int idx) const;
 
 	public:
 		Character();
 		explicit Character(const std::string &name);
-		Character(Character &other);
-        virtual ~Character();
+		Character(Character const &other);
+		virtual ~Character();
 
 		Character &operator=(const Character &other);
 

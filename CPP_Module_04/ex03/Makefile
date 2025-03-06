@@ -1,7 +1,7 @@
 NAME	= interface
 
 CXX	= g++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes -g
 
 RM		= rm -f
 RMDIR	= rm -rf
@@ -10,7 +10,7 @@ SRC_DIR = src
 OBJ_DIR = objs
 INC_DIR = includes
 
-SRCS	= main.cpp AMateria.cpp ICharacter.cpp IMateriaSource.cpp Character.cpp Cure.cpp Ice.cpp
+SRCS	= main.cpp Character.cpp AMateria.cpp Ice.cpp Cure.cpp MateriaSource.cpp
 
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRCS))
 

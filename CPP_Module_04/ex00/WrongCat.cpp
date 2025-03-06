@@ -13,5 +13,5 @@ WrongCat::~WrongCat() {
 }
 
 void WrongCat::makeSound() const {
-	std::cout << MAGENTA << "~ Vroom Vroom ~" << RESET << std::endl;
+	std::cout << MAGENTA << "~ WrongCat ~" << RESET << std::endl;
 }

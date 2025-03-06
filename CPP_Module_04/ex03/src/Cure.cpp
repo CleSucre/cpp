@@ -1,19 +1,12 @@
-#include "../includes/Cure.hpp"
+#include "Cure.hpp"
+#include <colors.h>
 
 Cure::Cure() : AMateria("cure") {}
 
-Cure::Cure(Cure const &other) : AMateria(other) {}
-
-Cure::~Cure() {}
-
-Cure &Cure::operator=(Cure const &other) {
-	return *this;
+AMateria *Cure::clone() const {
+	return new Cure();
 }
 
-AMateria* Cure::clone() const {
-	return new Cure(*this);
-}
-
-void Cure::use(ICharacter& target) {
-	std::cout << GREEN << "* heals " << target.getName() << "'s wounds *" << RESET << std::endl;
+void Cure::use(ICharacter &target) {
+	std::cout << GREEN << "* heals " << MAGENTA << target.getName() << GREEN << "'s wounds *" << RESET << std::endl;
 }

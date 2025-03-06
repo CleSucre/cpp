@@ -17,7 +17,7 @@ class WrongAnimal {
 
 		std::string getType() const;
 
-		virtual void makeSound() const;
+		void makeSound() const;
 };
 
 #endif //WRONGANIMAL_HPP

@@ -1,26 +1,23 @@
 #ifndef AMATERIA_HPP
 #define AMATERIA_HPP
 
-#include "colors.h"
 #include "ICharacter.hpp"
-#include <iostream>
 
 class AMateria {
-	protected:
-		std::string _type;
+    protected:
+        const std::string _type;
 
     public:
-		explicit AMateria(std::string const & type);
-		AMateria(AMateria const &other);
-		virtual ~AMateria();
+        explicit AMateria(const std::string &type);
+        AMateria(const AMateria &other);
+        virtual ~AMateria();
 
-		AMateria &operator=(AMateria const &);
+        AMateria &operator=(const AMateria &other);
 
-		std::string const &getType() const;
+        const std::string &getType() const;
 
-		virtual void use(ICharacter &target);
-
-		virtual AMateria* clone() const = 0;
+        virtual AMateria *clone() const = 0;
+        virtual void use(ICharacter &target);
 };
 
 #endif //AMATERIA_HPP
