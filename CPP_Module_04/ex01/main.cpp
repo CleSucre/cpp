@@ -4,7 +4,7 @@
 
 int main() {
     std::cout << BOLD << BLUE << "==== TEST 1: Creating Animals ====" << RESET << std::endl;
-    const int arraySize = 6;
+    const int arraySize = 100;
     Animal* animals[arraySize];
 
     for (int i = 0; i < arraySize; i++) {

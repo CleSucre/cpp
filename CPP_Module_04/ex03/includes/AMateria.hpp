@@ -8,7 +8,7 @@ class AMateria {
         const std::string _type;
 
     public:
-        explicit AMateria(const std::string &type);
+        AMateria(const std::string &type);
         AMateria(const AMateria &other);
         virtual ~AMateria();
 
