@@ -10,7 +10,7 @@ SRC_DIR = src
 OBJ_DIR = objs
 INC_DIR = includes
 
-SRCS	= main.cpp
+SRCS	= main.cpp Serializer.cpp
 
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRCS))
 
