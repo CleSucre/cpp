@@ -34,9 +34,11 @@ int main() {
 
 
         srand(static_cast<unsigned int>(time(NULL)));
+        std::vector<int> randomNumbers;
         for (int i = 0; i < 20000; ++i) {
-            bigSpan.addNumber(rand());
+            randomNumbers.push_back(rand());
         }
+        bigSpan.addNumber(randomNumbers.begin(), randomNumbers.end());
 
         std::cout << GREEN << "Shortest span: " << bigSpan.shortestSpan() << RESET << std::endl;
         std::cout << GREEN << "Longest span: " << bigSpan.longestSpan() << RESET << std::endl;
