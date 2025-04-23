@@ -1,3 +1,12 @@
+/**
+* ================================================================
+ *  Project     : CPP_Module_09
+ *  File        : main.cpp
+ *
+ *  Created by  : Julien Thomas on 23/04/2025
+ * ================================================================
+ */
+
 #include "colors.h"
 #include "Csv.hpp"
 #include <iostream>

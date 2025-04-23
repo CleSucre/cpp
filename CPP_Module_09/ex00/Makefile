@@ -1,3 +1,12 @@
+/**
+* ================================================================
+ *  Project     : CPP_Module_09
+ *  File        : Makefile
+ *
+ *  Created by  : Julien Thomas on 23/04/2025
+ * ================================================================
+ */
+
 NAME	= btc
 
 CXX	= c++
@@ -10,7 +19,7 @@ SRC_DIR = src
 OBJ_DIR = objs
 INC_DIR = includes
 
-SRCS	= main.cpp Csv.cpp
+SRCS	= main.cpp Csv.cpp Input.cpp
 
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRCS))
 
