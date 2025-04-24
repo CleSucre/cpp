@@ -2,6 +2,10 @@
 *.vscode/
 *.idea/
 
+# MacOS
+
+.DS_Store
+
 # Compiled Static libraries
 *.lai
 *.la

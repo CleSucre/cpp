@@ -10,18 +10,20 @@
 #ifndef CSV_HPP
 #define CSV_HPP
 
+#include "Utils.hpp"
 #include <iostream>
 #include <map>
 #include <istream>
 #include <sstream>
 #include <fstream>
+#include <iomanip>
 
 #define DATA_FILE_NAME "data.csv"
-#define SEPARATOR ','
+#define CSV_SEPARATOR ','
 
 class Csv {
     private:
-        std::map<std::string, double> _data;
+        std::map<std::string, float> _data;
     public:
         Csv();
         Csv(std::ifstream& stream);
@@ -31,8 +33,7 @@ class Csv {
         Csv& operator=(const Csv& other);
 
         void print() const;
-
-        const std::map<std::string, double>& getData() const;
+        float getValue(const std::string& date) const;
 };
 
 #endif //CSV_HPP

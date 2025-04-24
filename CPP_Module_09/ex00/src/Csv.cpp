@@ -13,19 +13,25 @@ Csv::Csv() : _data() {}
 
 Csv::Csv(std::ifstream& stream) {
     std::string line;
+    std::string date;
+    float value;
 
     std::getline(stream, line);
 
     while (std::getline(stream, line)) {
         std::stringstream ss(line);
-        std::string date;
-        double rate;
 
-        std::getline(ss, date, ',');
+        std::getline(ss, date, CSV_SEPARATOR);
 
-        ss >> rate;
+        if (!(ss >> value)) {
+            continue;
+        }
 
-        _data[date] = rate;
+        if (!isDate(date)) {
+            continue;
+        }
+
+        _data[date] = value;
     }
 }
 
@@ -40,11 +46,21 @@ Csv& Csv::operator=(const Csv& csv) {
 
 void Csv::print() const {
     std::cout << "CSV Data:" << std::endl;
-    for (std::map<std::string, double>::const_iterator it = _data.begin(); it != _data.end(); ++it) {
-        std::cout << it->first << ": " << it->second << std::endl;
+    for (std::map<std::string, float>::const_iterator it = _data.begin(); it != _data.end(); ++it) {
+        std::cout << it->first << ": " << std::fixed << std::setprecision(2) << it->second << std::endl;
     }
 }
 
-const std::map<std::string, double>& Csv::getData() const {
-    return _data;
+float Csv::getValue(const std::string& date) const {
+    std::map<std::string, float>::const_iterator it = _data.lower_bound(date);
+    if (it == _data.end()) {
+        return 0.0f;
+    }
+    if (it->first != date) {
+        if (it == _data.begin()) {
+            return 0.0f;
+        }
+        --it;
+    }
+    return it->second;
 }
