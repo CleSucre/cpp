@@ -121,15 +121,24 @@ int BitcoinExchange::isDate(const std::string& date) {
 
     int day;
     int month;
+
     dayStream >> day;
     monthStream >> month;
 
     if (month < 1 || month > 12) {
         return 3;
-    }
-
-    if (day < 1 || day > 31) {
-        return 2;
+    } else if (month == 2) {
+        if (day < 1 || day > 29) {
+            return 2;
+        }
+    } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+        if (day < 1 || day > 30) {
+            return 2;
+        }
+    } else {
+        if (day < 1 || day > 31) {
+            return 2;
+        }
     }
 
     return 1;
