@@ -1,7 +1,7 @@
 NAME	= RPN
 
 CXX	= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes -g
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes
 
 RM		= rm -f
 RMDIR	= rm -rf
@@ -10,7 +10,7 @@ SRC_DIR = src
 OBJ_DIR = objs
 INC_DIR = includes
 
-SRCS	= main.cpp
+SRCS	= main.cpp RPN.cpp
 
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRCS))
 

@@ -10,7 +10,7 @@ SRC_DIR = src
 OBJ_DIR = objs
 INC_DIR = includes
 
-SRCS	= main.cpp Csv.cpp Utils.cpp
+SRCS	= main.cpp BitcoinExchange.cpp
 
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRCS))
 
