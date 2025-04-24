@@ -69,7 +69,7 @@ int main(int argc, const char * argv[]) {
     std::ifstream data_file(DATA_FILE_NAME);
     if (!data_file.is_open()) {
         std::cout << RED << "Error: " << RESET << "Could not open file '" << DATA_FILE_NAME << "'" << std::endl;
-        return 1;
+        return 2;
     }
     Csv csv(data_file);
     data_file.close();
@@ -77,7 +77,7 @@ int main(int argc, const char * argv[]) {
     std::ifstream input_file(argv[1]);
     if (!input_file.is_open()) {
         std::cout << RED << "Error: " << RESET << "Could not open file '" << argv[1] << "'" << std::endl;
-        return 1;
+        return 3;
     }
     processInput(input_file, csv);
 

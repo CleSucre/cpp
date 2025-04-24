@@ -1,7 +1,7 @@
-NAME	= reverse
+NAME	= RPN
 
 CXX	= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -Iincludes -g
 
 RM		= rm -f
 RMDIR	= rm -rf
