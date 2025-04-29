@@ -1,10 +1,5 @@
 #include "RPN.hpp"
 
-#define RESET		"\033[0m"
-#define RED			"\033[31m"
-#define GREEN		"\033[32m"
-#define YELLOW		"\033[33m"
-
 int main(int argc, char **argv) {
     if (argc < 2) {
         std::cerr << RED << "Usage: " << argv[0] << " <expression>" << RESET << std::endl;
