@@ -111,8 +111,6 @@ bool ScalarConverter::isDouble(const std::string &value) const {
 void ScalarConverter::convert(std::string value) {
     ScalarConverter instance;
 
-    std::cout << std::fixed;
-
     if (instance.isChar(value)) {
         std::cout << GREEN << "Converting " << YELLOW << "char: " << MAGENTA << value.c_str() << RESET << std::endl;
         char c = value[0];
