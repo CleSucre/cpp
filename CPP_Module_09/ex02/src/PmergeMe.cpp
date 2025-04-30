@@ -45,16 +45,22 @@ bool PmergeMe::parseInput(int argc, char** argv) {
 
 void PmergeMe::displayBefore() const {
     std::cout << YELLOW << "Before:" << RESET;
-    for (std::vector<int>::const_iterator it = _vector.begin(); it != _vector.end(); ++it) {
+
+    std::vector<int>::const_iterator it = _vector.begin();
+    while (it != _vector.end()) {
         std::cout << " " << *it;
+        ++it;
     }
     std::cout << std::endl;
 }
 
 void PmergeMe::displayAfter() const {
     std::cout << GREEN << "After:" << RESET;
-    for (std::vector<int>::const_iterator it = _vector.begin(); it != _vector.end(); ++it) {
+
+    std::vector<int>::const_iterator it = _vector.begin();
+    while (it != _vector.end()) {
         std::cout << " " << *it;
+        ++it;
     }
     std::cout << std::endl;
 }
@@ -77,37 +83,50 @@ void PmergeMe::sortDeque() {
 
 template<typename Iterator>
 void PmergeMe::insertionSort(Iterator begin, Iterator end) {
-    for (Iterator i = begin + 1; i != end; ++i) {
-        typename Iterator::value_type key = *i;
-        Iterator j = i;
+    typename Iterator::value_type key;
+    Iterator j;
+    Iterator i = begin + 1;
+    
+    while (i != end) {
+        key = *i;
+        j = i;
         while (j != begin && *(j - 1) > key) {
             *j = *(j - 1);
             --j;
         }
         *j = key;
+        ++i;
     }
 }
 
 std::vector<size_t> PmergeMe::generateJacobsthal(size_t n) {
     std::vector<size_t> sequence;
-    size_t j0 = 0, j1 = 1;
+    size_t j0 = 0;
+    size_t j1 = 1;
+    size_t next;
+
     while (j1 <= n) {
         sequence.push_back(j1);
-        size_t next = j1 + 2 * j0;
+        next = j1 + 2 * j0;
         j0 = j1;
         j1 = next;
     }
     std::vector<bool> used(n + 1, false);
     std::vector<size_t> order;
-    for (size_t i = 0; i < sequence.size(); ++i) {
+    size_t i = 0;
+    while (i < sequence.size()) {
         if (sequence[i] <= n && !used[sequence[i]]) {
             order.push_back(sequence[i]);
             used[sequence[i]] = true;
         }
+        ++i;
     }
-    for (size_t i = 1; i <= n; ++i) {
-        if (!used[i])
+    i = 1;
+    while (i <= n) {
+        if (!used[i]) {
             order.push_back(i);
+        }
+        ++i;
     }
     return order;
 }
