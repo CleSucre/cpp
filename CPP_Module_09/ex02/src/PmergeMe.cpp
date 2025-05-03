@@ -81,6 +81,13 @@ void PmergeMe::sortDeque() {
     fordJohnsonSort(_deque);
 }
 
+/**
+ * @brief Sort a range of elements using insertion sort.
+ * 
+ * @tparam Iterator
+ * @param Iterator begin
+ * @param Iterator end
+ */
 template<typename Iterator>
 void PmergeMe::insertionSort(Iterator begin, Iterator end) {
     typename Iterator::value_type key;
@@ -131,6 +138,15 @@ std::vector<size_t> PmergeMe::generateJacobsthal(size_t n) {
     return order;
 }
 
+/**
+ * @brief Split the container into groups of size groupSize,
+ *        then sort each group using insertion sort,
+ *        and finally merge the groups.
+ * 
+ * @tparam Container
+ * @param Container& container
+ * @param size_t groupSize
+ */
 template<typename Container>
 void PmergeMe::mergePhase(Container& container, size_t groupSize) {
     if (groupSize >= container.size()) {
@@ -159,9 +175,7 @@ void PmergeMe::mergePhase(Container& container, size_t groupSize) {
         j = i + 1;
         while (j < groups.size()) {
             if (groups[i].back() > groups[j].back()) {
-                Container tmp = groups[i];
-                groups[i] = groups[j];
-                groups[j] = tmp;
+                std::swap(groups[i], groups[j]);
             }
             ++j;
         }
@@ -178,6 +192,14 @@ void PmergeMe::mergePhase(Container& container, size_t groupSize) {
     mergePhase(container, groupSize * 2);
 }
 
+/**
+ * @brief Split the container into two halves: main and pend.
+ * 
+ * @tparam Container
+ * @param const Container& container
+ * @param Container& main
+ * @param Container& pend
+ */
 template<typename Container>
 void PmergeMe::splitMainPend(const Container& container, Container& main, Container& pend) {
     size_t mid = container.size() / 2;
@@ -186,6 +208,13 @@ void PmergeMe::splitMainPend(const Container& container, Container& main, Contai
     pend.insert(pend.end(), container.begin() + mid, container.end());
 }
 
+/**
+ * @brief Insert elements from pend into main using the Jacobsthal sequence.
+ * 
+ * @tparam Container
+ * @param Container& main
+ * @param Container& pend
+ */
 template<typename Container>
 void PmergeMe::insertionPhase(Container& main, Container& pend) {
     if (pend.empty()) {
@@ -206,6 +235,12 @@ void PmergeMe::insertionPhase(Container& main, Container& pend) {
     }
 }
 
+/**
+ * @brief Sort the container using the Ford-Johnson algorithm.
+ * 
+ * @tparam Container
+ * @param Container& container
+ */
 template<typename Container>
 void PmergeMe::fordJohnsonSort(Container& container) {
     if (container.size() <= 1) {
