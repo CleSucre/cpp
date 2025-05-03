@@ -7,10 +7,12 @@ BitcoinExchange::BitcoinExchange(std::ifstream& stream) {
     std::string date;
     float value;
 
-    std::getline(stream, line);
-
     while (std::getline(stream, line)) {
         std::stringstream ss(line);
+
+        if (line.find("date") != std::string::npos) {
+            continue;
+        }
 
         std::getline(ss, date, CSV_SEPARATOR);
 
@@ -54,10 +56,12 @@ void BitcoinExchange::processInput(std::ifstream& stream) {
     std::string date;
     float value;
 
-    std::getline(stream, line);
-
     while (std::getline(stream, line)) {
         std::stringstream ss(line);
+
+        if (line.find("date") != std::string::npos) {
+            continue;
+        }
 
         std::getline(ss, date, INPUT_SEPARATOR);
 
