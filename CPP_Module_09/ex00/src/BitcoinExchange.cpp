@@ -2,6 +2,11 @@
 
 BitcoinExchange::BitcoinExchange() : _data() {}
 
+/**
+ * @brief Constructor that reads data from a CSV file, parses it, and stores it in a map.
+ * 
+ * @param std::ifstream& stream
+ */
 BitcoinExchange::BitcoinExchange(std::ifstream& stream) {
     std::string line;
     std::string date;
@@ -37,6 +42,13 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& btc) {
     return *this;
 }
 
+/**
+ * @brief Get value from the map based on the date,
+ *        using lower_bound to find the closest date if exact date is not found.
+ * 
+ * @param const std::string& date
+ * @return float The value associated with the date or 0.0 if not found.
+ */
 float BitcoinExchange::getValue(const std::string& date) const {
     std::map<std::string, float>::const_iterator it = _data.lower_bound(date);
     if (it == _data.end()) {
@@ -51,6 +63,10 @@ float BitcoinExchange::getValue(const std::string& date) const {
     return it->second;
 }
 
+/**
+ * @brief Process input from a stream, parse each line, and print the result.
+ *        It checks for errors in the date format and value.
+ */
 void BitcoinExchange::processInput(std::ifstream& stream) {
     std::string line;
     std::string date;
