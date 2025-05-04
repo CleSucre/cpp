@@ -32,6 +32,9 @@ int evaluateRPN(const std::string& expression) {
             } else if (token == "*") {
                 stack.push(a * b);
             } else if (token == "/") {
+                if (b == 0) {
+                    throw std::runtime_error("Cannot divide by 0");
+                }
                 stack.push(a / b);
             } else {
                 throw std::runtime_error("Unknown operator: " + token);
