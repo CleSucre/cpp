@@ -38,6 +38,8 @@ int evaluateRPN(const std::string& expression) {
             }
         }
     }
-
+    if (stack.size() > 1) {
+        throw std::runtime_error("Too many operands");
+    }
     return stack.top();
 }
