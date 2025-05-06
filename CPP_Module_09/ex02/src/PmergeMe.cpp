@@ -17,6 +17,13 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
     return *this;
 }
 
+/**
+ * @brief Parse the command line arguments and fill the vector and deque.
+ * 
+ * @param int argc
+ * @param char** argv
+ * @return true if parsing is successful, false otherwise
+ */
 bool PmergeMe::parseInput(int argc, char** argv) {
     int value;
     int i = 1;
@@ -106,6 +113,12 @@ void PmergeMe::insertionSort(Iterator begin, Iterator end) {
     }
 }
 
+/**
+ * @brief Generate the Jacobsthal sequence up to n.
+ * 
+ * @param size_t n
+ * @return std::vector<size_t> 
+ */
 std::vector<size_t> PmergeMe::generateJacobsthal(size_t n) {
     std::vector<size_t> sequence;
     size_t j0 = 0;

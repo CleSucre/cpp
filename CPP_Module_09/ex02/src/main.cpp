@@ -4,6 +4,11 @@
 #include <sys/time.h>
 #include <iomanip>
 
+/**
+ * @brief Get the Current Time object
+ * 
+ * @return double Current time in microseconds
+ */
 static double getCurrentTime() {
     struct timeval tv;
 
