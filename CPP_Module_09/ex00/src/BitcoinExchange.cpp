@@ -13,19 +13,30 @@ BitcoinExchange::BitcoinExchange(std::ifstream& stream) {
     float value;
 
     while (std::getline(stream, line)) {
+
         std::stringstream ss(line);
 
         if (line.find("date") != std::string::npos) {
+            std::cerr << RED << "Error: " << RESET << "Header line found, skipping." << std::endl;
             continue;
         }
 
         std::getline(ss, date, CSV_SEPARATOR);
 
+        date.erase(0, date.find_first_not_of(" \t\n\r\f\v"));
+
+        std::string::size_type pos = 0;
+        while ((pos = date.find_first_of(" \t\n\r\f\v", pos)) != std::string::npos) {
+            date.erase(pos, 1);
+        }
+
         if (!(ss >> value)) {
+            std::cerr << RED << "Error: " << RESET << "Invalid value for date: '" << date << "'" << std::endl;
             continue;
         }
 
         if (!this->isDate(date)) {
+            std::cerr << RED << "Error: " << RESET << "Invalid date format: '" << date << "'" << std::endl;
             continue;
         }
 
@@ -44,23 +55,24 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& btc) {
 
 /**
  * @brief Get value from the map based on the date,
- *        using lower_bound to find the closest date if exact date is not found.
+ *        if the date is not found, return the closest previous date's value.
  * 
  * @param const std::string& date
- * @return float The value associated with the date or 0.0 if not found.
+ * @return float value
  */
 float BitcoinExchange::getValue(const std::string& date) const {
-    std::map<std::string, float>::const_iterator it = _data.lower_bound(date);
-    if (it == _data.end()) {
-        return 0.0f;
-    }
-    if (it->first != date) {
-        if (it == _data.begin()) {
+    std::map<std::string, float>::const_iterator it = _data.find(date);
+    if (it != _data.end()) {
+        return it->second;
+    } else {
+        std::map<std::string, float>::const_iterator prev_it = _data.lower_bound(date);
+        if (prev_it == _data.begin()) {
             return 0.0f;
+        } else {
+            --prev_it;
+            return prev_it->second;
         }
-        --it;
     }
-    return it->second;
 }
 
 /**
@@ -95,6 +107,11 @@ void BitcoinExchange::processInput(std::ifstream& stream) {
 
         if (value < 0) {
             std::cerr << RED << "Error: " << RESET << "Negative value for date: '" << date << "'" << std::endl;
+            continue;
+        }
+
+        if (value > 1000) {
+            std::cerr << RED << "Error: " << RESET << "Value too large for date: '" << date << "'" << std::endl;
             continue;
         }
 
